@@ -1,0 +1,22 @@
+[project]
+name = "face-tik"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+# requires-python = ">=3.12"
+dependencies = [
+    "deepface>=0.0.93",
+    "loguru>=0.7.3",
+    "opencv-python-headless>=4.12.0.88",
+    "pytest>=8.4.1",
+    "tensorflow-cpu>=2.18.0",
+    "tf-keras>=2.18.0",
+]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/face_tik", "tools"]

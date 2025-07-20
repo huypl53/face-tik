@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  face-recognizer-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - DEFAULT_RECOGNIZER=insightface 

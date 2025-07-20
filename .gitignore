@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.pth
+MANIFEST.in
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written into a _MEIPASS folder, but if the user
+#  passes the --onefile option, they will end up in the dist folder.
+/dist/
+/build/
+/.pyinstaller/
+/.spec
+
+# Scientific
+*.nc
+*.hdf
+
+# Spyder project
+.spyderproject
+.spyproject
+
+# virtualenv
+.venv
+venv
+
+# Environments
+.env
+.DS_Store
+
+# OS generated files #
+######################
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+
+# Other
+*.log
+/data/**
+/models/**
+
+**/*.pkl
+
+Session.vim
+tik-crawler
