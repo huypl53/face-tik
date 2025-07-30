@@ -6,6 +6,7 @@ This interface enables a pluggable architecture using the Strategy Design Patter
 """
 
 import abc
+from typing import Any, Dict
 import numpy as np
 
 from face_tik.schemas.face import FaceDatabase, RecognitionResult
@@ -13,21 +14,31 @@ from face_tik.schemas.face import FaceDatabase, RecognitionResult
 
 class FaceRecognizer(abc.ABC):
     @abc.abstractmethod
-    def __init__(self, config=None):
+    def __init__(
+        self,
+        face_db: FaceDatabase,
+    ):
         """Initialize the recognizer with optional configuration."""
-        pass
+        self.face_db: FaceDatabase = face_db
+        self.known_faces: Dict[str, Any]
+        self.build_database(self.face_db)
 
     @abc.abstractmethod
-    def build_database(self, known_faces_dir: str) -> dict:
+    def build_database(self, face_db: FaceDatabase):
         """
         Process the known_faces directory, generate embeddings for each person, and return a database structure:
         { 'person_name': [embedding1, embedding2, ...], ... }
         """
         pass
 
+    @property
+    @abc.abstractmethod
+    def has_known_faces(self) -> bool:
+        pass
+
     @abc.abstractmethod
     def recognize_faces(
-        self, image: np.ndarray, face_database: FaceDatabase, top_k: int = 2
+        self, image: np.ndarray, top_k: int = 2
     ) -> list[RecognitionResult]:
         """
         Recognize faces in a single image frame.
@@ -42,4 +53,3 @@ class FaceRecognizer(abc.ABC):
                 - confidence: float (recognition score if available)
         """
         pass
-

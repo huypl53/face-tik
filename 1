@@ -1,0 +1,279 @@
+let SessionLoad = 1
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let v:this_session=expand("<sfile>:p")
+silent only
+silent tabonly
+cd /mnt/Code/code/AI/projects/face/face-recognition/face-tiktok
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+let s:shortmess_save = &shortmess
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +14 pyproject.toml
+badd +1 .python-version
+badd +54 README.md
+badd +23 Dockerfile
+badd +9 conftest.py
+badd +51 tests/test_recognizers.py
+badd +58 src/face_tik/recognizers/deepface.py
+badd +7 tests/test_cli.py
+badd +34 src/face_tik/schemas/face.py
+badd +1 data/known_faces/trump.jpg
+badd +65 .gitignore
+badd +49 src/face_tik/recognizers/insightface.py
+badd +5 src/face_tik/utils/image.py
+badd +23 /mnt/Code/code/AI/projects/face/face-recognition/face-tiktok/src/face_tik/core/interfaces.py
+argglobal
+%argdel
+$argadd pyproject.toml
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
+edit pyproject.toml
+argglobal
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+sil! 7,15fold
+let &fdl = &fdl
+let s:l = 14 - ((13 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 14
+normal! 0
+tabnext
+edit tests/test_recognizers.py
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+balt data/known_faces/trump.jpg
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+sil! 15,16fold
+sil! 20,24fold
+sil! 19,25fold
+sil! 28,29fold
+sil! 36,37fold
+sil! 31,42fold
+sil! 44,45fold
+sil! 52,53fold
+sil! 46,57fold
+sil! 12,57fold
+let &fdl = &fdl
+let s:l = 50 - ((24 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 50
+normal! 06|
+tabnext
+edit src/face_tik/recognizers/deepface.py
+argglobal
+balt src/face_tik/schemas/face.py
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+sil! 17,19fold
+sil! 20,21fold
+sil! 24,25fold
+sil! 28,29fold
+sil! 31,32fold
+sil! 40,41fold
+sil! 46,47fold
+sil! 53,55fold
+sil! 33,58fold
+sil! 16,58fold
+let &fdl = &fdl
+let s:l = 58 - ((38 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 58
+normal! 045|
+tabnext
+edit src/face_tik/recognizers/insightface.py
+argglobal
+balt src/face_tik/schemas/face.py
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+sil! 14,15fold
+sil! 21,24fold
+sil! 25,29fold
+sil! 32,33fold
+sil! 49,50fold
+sil! 48,52fold
+sil! 53,55fold
+sil! 44,56fold
+sil! 57,58fold
+sil! 43,58fold
+sil! 35,58fold
+sil! 60,61fold
+sil! 64,66fold
+sil! 69,70fold
+sil! 77,78fold
+sil! 82,83fold
+sil! 81,84fold
+sil! 75,85fold
+sil! 73,86fold
+sil! 87,88fold
+sil! 62,89fold
+sil! 91,92fold
+sil! 94,96fold
+sil! 20,96fold
+sil! 99,100fold
+sil! 101,104fold
+let &fdl = &fdl
+20
+sil! normal! zo
+35
+sil! normal! zo
+43
+sil! normal! zo
+44
+sil! normal! zo
+62
+sil! normal! zo
+73
+sil! normal! zo
+75
+sil! normal! zo
+let s:l = 41 - ((10 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 41
+normal! 014|
+tabnext
+edit /mnt/Code/code/AI/projects/face/face-recognition/face-tiktok/src/face_tik/core/interfaces.py
+argglobal
+balt src/face_tik/recognizers/insightface.py
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+sil! 17,19fold
+sil! 20,24fold
+sil! 27,32fold
+sil! 36,37fold
+sil! 40,41fold
+sil! 45,48fold
+sil! 50,53fold
+sil! 49,53fold
+sil! 42,55fold
+sil! 15,55fold
+let &fdl = &fdl
+let s:l = 23 - ((10 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 23
+normal! 0
+tabnext
+edit src/face_tik/utils/image.py
+argglobal
+balt src/face_tik/recognizers/insightface.py
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+sil! 11,12fold
+sil! 10,12fold
+sil! 5,14fold
+let &fdl = &fdl
+let s:l = 5 - ((4 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 5
+normal! 055|
+tabnext
+edit README.md
+argglobal
+balt src/face_tik/recognizers/insightface.py
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=99
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 14 - ((13 * winheight(0) + 18) / 36)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 14
+normal! 0
+tabnext 2
+if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20
+let &shortmess = s:shortmess_save
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if filereadable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

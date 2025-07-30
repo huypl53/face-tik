@@ -3,6 +3,7 @@ from pathlib import Path
 import cv2
 
 from face_tik.recognizers.deepface import DeepFace
+from face_tik.recognizers.insightface import InsightFace
 from face_tik.schemas.face import FaceDatabase
 
 from loguru import logger
@@ -29,12 +30,28 @@ class TestRecognizers:
 
     def test_deepface_infer_single(self, face_to_verify: Path, face_db: FaceDatabase):
         assert face_to_verify.is_file(), "No image found at {}".format(face_to_verify)
-        deep_face_recog = DeepFace()
+        deep_face_recog = DeepFace(face_database=face_db)
         input_face = cv2.imread(str(face_to_verify))
         logger.info(f"Read {face_to_verify}... done!")
         if input_face is None:
             raise FileExistsError("Reading image at {} failed".format(face_to_verify))
         # input_face = cv2.cvtColor(input_face, cv2.COLOR_BGR2RGB)
 
-        faces = deep_face_recog.recognize_faces(input_face, face_db)
+        faces = deep_face_recog.recognize_faces(input_face)
         logger.info(f"Found {len(faces)} faces\n{faces}")
+        logger.info(f"{[f.model_dump() for f in faces]}")
+
+    def test_insight_face_infer_single(
+        self, face_to_verify: Path, face_db: FaceDatabase
+    ):
+
+        assert face_to_verify.is_file(), "No image found at {}".format(face_to_verify)
+        insight_face_recog = InsightFace(face_db)
+        input_face = cv2.imread(str(face_to_verify))
+        logger.info(f"Read {face_to_verify}... done!")
+        if input_face is None:
+            raise FileExistsError("Reading image at {} failed".format(face_to_verify))
+        faces = insight_face_recog.recognize_faces(input_face)
+
+        logger.info(f"Found {len(faces)} faces\n{faces}")
+        logger.info(f"{[f.model_dump() for f in faces]}")

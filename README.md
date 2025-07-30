@@ -50,3 +50,6 @@ uv sync
 ```bash
 pytest --capture=no tests/test_recognizers.py
 ```
+
+## TODOs
+[ ] API refresh database

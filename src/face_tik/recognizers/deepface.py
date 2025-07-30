@@ -14,21 +14,29 @@ from face_tik.schemas.face import RecognitionResult, FaceDatabase
 
 
 class DeepFace(FaceRecognizer):
-    def __init__(self, config=None):
-        super().__init__(config)
+    def __init__(
+        self,
+        face_database: FaceDatabase,
+    ):
+        super().__init__(face_database)
 
-    def build_database(self, known_faces_dir: str) -> dict:
-        return super().build_database(known_faces_dir)
+    # TODO: implement DeepFace pickling step
+    def build_database(self, face_db: FaceDatabase):
+        return super().build_database(face_db)
+
+    @property
+    def has_known_faces(self) -> bool:
+        return True
 
     def recognize_faces(
-        self, image: np.ndarray, face_database: FaceDatabase, top_k: int = 2
+        self, image: np.ndarray, top_k: int = 5
     ) -> list[RecognitionResult]:
 
         im_file = tempfile.NamedTemporaryFile(suffix=".png", delete=True)
         im_path = im_file.name
         cv2.imwrite(im_path, image)
 
-        face_db_path = face_database.face_dir
+        face_db_path = self.face_db.face_dir
         dfs = _DeepFace.find(
             img_path=im_path, db_path=str(face_db_path), model_name="Facenet512"
         )

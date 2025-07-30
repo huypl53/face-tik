@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from typing import Optional, List
 from pathlib import Path
+from pydantic import BaseModel, Field
 
 
-@dataclass
-class FaceDatabase:
+class FaceDatabase(BaseModel):
     """
     Configuration object for the face database.
     Attributes:
@@ -15,11 +15,10 @@ class FaceDatabase:
     face_dir: str | Path
     # Add more properties as needed, e.g.:
     # file_extensions: Optional[list[str]] = None
-    # metadata_path: Optional[str] = None
+    metadata: dict = Field(default_factory=lambda: {"deepface": {}, "insightface": {}})
 
 
-@dataclass
-class RecognitionResult:
+class RecognitionResult(BaseModel):
     """
     Represents a single face recognition result.
     Attributes:
